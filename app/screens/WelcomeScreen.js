@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, ImageBackground, Image, StyleSheet, Text } from "react-native"
+import AppButton from '../components/AppButton';
 
 function WelcomeScreen(props) {
     return (
@@ -9,11 +10,12 @@ function WelcomeScreen(props) {
             source={require("../assets/bg2.jpg")}>
             <View style={styles.logoContainer}>
                 <Image style={styles.logo} source={require("../assets/iconx.png")} />
-                <Text>Sell What you don't need</Text>
+                <Text style={styles.tagLine}>Sell What you don't need</Text>
             </View>
-
-            <View style={styles.registerButton}></View>
-            <View style={styles.loginButton}></View>
+            <View style={styles.buttonContainer}>
+                <AppButton title="Login" />
+                <AppButton title="register" color="secondary" />
+            </View>
 
         </ImageBackground>
     );
@@ -34,16 +36,15 @@ const styles = StyleSheet.create({
         top: 70,
         alignItems: "center"
     },
+    tagLine: {
+        fontSize: 20,
+        fontWeight: "bold",
 
-    loginButton: {
-        width: "100%",
-        height: 70,
-        backgroundColor: "dodgerblue"
     },
-    registerButton: {
+
+    buttonContainer: {
+        padding: 15,
         width: "100%",
-        height: 70,
-        backgroundColor: "green"
     }
 })
 
