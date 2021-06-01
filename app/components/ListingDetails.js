@@ -24,9 +24,6 @@ export default function ListingDetails({ title, price, image }) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-
-    },
     image: {
         width: "100%",
         height: 300,
@@ -46,7 +43,7 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
     userContainer: {
-        marginVertical: 50,
+        marginVertical: 40,
     }
 
 })
