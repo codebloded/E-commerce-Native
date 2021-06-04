@@ -6,6 +6,7 @@ import * as Yup from "yup"
 import Screen from '../components/Screen'
 import AppFormFeild from '../components/AppFormFeild'
 import SubmitButton from '../components/SubmitButton'
+import AppFrom from '../components/AppFrom'
 
 const validateSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
@@ -17,40 +18,39 @@ export default function LoginScreen() {
         <Screen>
             <Image style={styles.icon} source={require("../assets/iconx.png")} />
 
-            <Formik
-                initialValues={{ email: '', password: '' }}
+            <AppFrom
+                initialValues={{ email: "", password: "" }}
                 onSubmit={values => console.log(values)}
                 validationSchema={validateSchema}
             >
-                {() => (
-                    <>
-                        <View style={styles.container}>
 
-                            <AppFormFeild
-                                autoCorrect={false}
-                                keyboardType="email-address"
-                                name="email"
-                                autoCapitlize="none"
-                                placeholder="Email"
-                                icon="email"
-                                textContentType="emailAddress"
-                            />
+                <View style={styles.container}>
 
-                            <AppFormFeild
-                                autoCorrect={false}
-                                secureTextEntry
-                                autoCapitalize="none"
-                                name="password"
-                                placeholder="Password"
-                                icon="lock"
-                                textContentType="password"
-                            />
+                    <AppFormFeild
+                        autoCorrect={false}
+                        keyboardType="email-address"
+                        name="email"
+                        autoCapitlize="none"
+                        placeholder="Email"
+                        icon="email"
+                        textContentType="emailAddress"
+                    />
 
-                            <SubmitButton title="Login" />
-                        </View>
-                    </>
-                )}
-            </Formik>
+                    <AppFormFeild
+                        autoCorrect={false}
+                        secureTextEntry
+                        autoCapitalize="none"
+                        name="password"
+                        placeholder="Password"
+                        icon="lock"
+                        textContentType="password"
+                    />
+
+                    <SubmitButton title="Login" />
+                </View>
+
+
+            </AppFrom>
 
 
         </Screen>

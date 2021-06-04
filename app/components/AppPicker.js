@@ -5,7 +5,7 @@ import Colors from '../config/Colors'
 import Screen from './Screen'
 import PickerItem from './PickerItem'
 
-export default function AppPicker({ icon, items, selectedItem, onSelectItem, placeholder }) {
+export default function AppPicker({ icon, items, selectedItem, numberOfColumn = 1, onSelectItem, PickerItemComponent = PickerItem, placeholder }) {
     const [modalVisible, setModalVisible] = useState(false)
     return (
         <>
@@ -28,8 +28,10 @@ export default function AppPicker({ icon, items, selectedItem, onSelectItem, pla
                 <Button title="Close" onPress={() => setModalVisible(false)} />
                 <FlatList
                     data={items}
+                    numColumns={numberOfColumn}
                     keyExtractor={item => item.value.toString()}
-                    renderItem={({ item }) => <PickerItem
+                    renderItem={({ item }) => <PickerItemComponent
+                        item={item}
                         label={item.label}
                         onPress={() => {
                             setModalVisible(false)

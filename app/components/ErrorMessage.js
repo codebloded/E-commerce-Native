@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import Colors from '../config/Colors'
 
 export default function ErrorMessage({ error, visible }) {
-    if (!visible || !error) return null
+    if (!error || !visible) return null
     return (
         <Text style={styles.error}>{error}</Text>
     )
