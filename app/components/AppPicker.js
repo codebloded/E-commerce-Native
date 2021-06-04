@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, TextInput, StyleSheet, Modal, TouchableWithoutFeedback, Button, FlatList } from 'react-native'
+import { View, Text, StyleSheet, Modal, TouchableWithoutFeedback, Button, FlatList } from 'react-native'
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 import Colors from '../config/Colors'
 import Screen from './Screen'
@@ -28,7 +28,7 @@ export default function AppPicker({ icon, items, selectedItem, onSelectItem, pla
                 <Button title="Close" onPress={() => setModalVisible(false)} />
                 <FlatList
                     data={items}
-                    keyExtractor={item => item.value}
+                    keyExtractor={item => item.value.toString()}
                     renderItem={({ item }) => <PickerItem
                         label={item.label}
                         onPress={() => {

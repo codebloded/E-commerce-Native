@@ -13,6 +13,7 @@ import AccountScreen from './app/screens/AccountScreen';
 import ListingScreen from './app/screens/ListingScreen';
 import AppTextInput from './app/components/AppTextInput';
 import AppPicker from './app/components/AppPicker';
+import LoginScreen from './app/screens/LoginScreen';
 
 const products = [
   { label: "Furniture", value: 1 },
@@ -23,15 +24,7 @@ const products = [
 function App(props) {
   const [category, setCatergory] = useState()
   return (
-    <Screen>
-      <AppPicker
-        selectedItem={category}
-        onSelectItem={item => setCatergory(item)}
-        items={products}
-        icon="apps"
-        placeholder="Category" />
-      <AppTextInput icon="email" placeholder="First Name" />
-    </Screen>
+    <Messages />
 
   );
 }
