@@ -1,5 +1,5 @@
 import { Formik } from 'formik'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import * as Yup from "yup"
 import { StyleSheet, View } from 'react-native'
 
@@ -10,15 +10,20 @@ import AppPicker from '../components/AppPicker'
 import SubmitButton from '../components/SubmitButton'
 import AppFormPicker from '../components/AppFormPicker'
 import CategoryPicker from '../components/CategoryPicker'
+import AppImagePikcer from '../components/AppImagePikcer'
+import useLocation from '../hooks/useLocation'
 
 const validateSchema = Yup.object().shape({
     title: Yup.string().min(1).required().label("Title"),
     price: Yup.number().max(10000).min(3).required().label("Price"),
     description: Yup.string().label("Description"),
-    category: Yup.object().required().nullable().label("Category")
+    category: Yup.object().required().nullable().label("Category"),
+    images: Yup.array().min(1, "Please select at least one image")
 })
 
 export default function ListingEditScreen() {
+    const location = useLocation()
+
     return (
         <Screen style={styles.container}>
 
@@ -28,14 +33,15 @@ export default function ListingEditScreen() {
                     title: "",
                     price: "",
                     category: null,
-                    description: ""
+                    description: "",
+                    images: []
 
                 }}
-                onSubmit={(values) => console.log(values)}
+                onSubmit={(values) => console.log(location)}
                 validationSchema={validateSchema}
             >
                 <View>
-
+                    <AppImagePikcer name="images" />
                     <AppFormFeild
                         name="title"
                         placeholder="Title"
