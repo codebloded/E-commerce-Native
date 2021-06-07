@@ -3,13 +3,14 @@ import { View, Text, Image, StyleSheet } from 'react-native'
 import Colors from '../config/Colors'
 import ListItems from './ListItems'
 
-export default function ListingDetails({ title, price, image }) {
+export default function ListingDetails({ route }) {
+    const listings = route.params;
     return (
         <View>
-            <Image style={styles.image} source={image} />
+            <Image style={styles.image} source={listings.image} />
             <View style={styles.detailsContainer}>
-                <Text style={styles.title}>{title}</Text>
-                <Text style={styles.price}>{price}</Text>
+                <Text style={styles.title}>{listings.title}</Text>
+                <Text style={styles.price}>${listings.price}</Text>
 
                 <View style={styles.userContainer}>
                     <ListItems

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, ImageBackground, Image, StyleSheet, Text } from "react-native"
 import AppButton from '../components/AppButton';
 
-function WelcomeScreen(props) {
+function WelcomeScreen({ navigation }) {
     return (
         <ImageBackground
             resizeMode="contain"
@@ -13,8 +13,8 @@ function WelcomeScreen(props) {
                 <Text style={styles.tagLine}>Sell What you don't need</Text>
             </View>
             <View style={styles.buttonContainer}>
-                <AppButton title="Login" />
-                <AppButton title="register" color="secondary" />
+                <AppButton title="Login" onPress={() => navigation.navigate("Login")} />
+                <AppButton title="register" color="secondary" onPress={() => navigation.navigate("Register")} />
             </View>
 
         </ImageBackground>

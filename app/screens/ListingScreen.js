@@ -1,45 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, FlatList, StyleSheet } from 'react-native'
 
 import Card from '../components/Card'
 import Screen from '../components/Screen'
 import Colors from '../config/Colors'
+import listingApi from "../api/listings"
 
 
+export default function ListingScreen({ navigation }) {
+    const [listings, setListings] = useState([]);
 
+    useEffect(() => {
+        loadListings()
+    }, [])
 
-
-const listings = [
-    {
-        id: 1,
-        title: "Amazing Keyboard",
-        price: "100",
-        image: require('../assets/v1.jpg')
-    },
-    {
-        id: 2,
-        title: "Amazing Mouse",
-        price: "100",
-        image: require('../assets/v1.jpg')
-    },
-    {
-        id: 3,
-        title: "Amazing Laptop",
-        price: "100",
-        image: require('../assets/v1.jpg')
+    const loadListings = async () => {
+        const response = await listingApi.getListings();
+        setListings(response.data);
+        console.log(response.data[0].images[0].url)
     }
-]
-export default function ListingScreen() {
     return (
         <Screen style={styles.screen}>
             <FlatList
                 data={listings}
-                keyExtractor={list => list.id}
+                keyExtractor={list => list.id.toString()}
                 renderItem={({ item }) => (
                     <Card
                         title={item.title}
                         subTitle={"$" + item.price}
-                        image={item.image}
+                        imageUrl={item.images[0].url}
+                        onPress={() => navigation.navigate("ListingDetails", item)}
                     />
                 )}
             />

@@ -1,17 +1,20 @@
 import { setStatusBarStyle } from 'expo-status-bar'
 import React from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableWithoutFeedback } from 'react-native'
 import Colors from '../config/Colors'
 
-export default function Card({ title, subTitle, image }) {
+export default function Card({ title, subTitle, imageUrl, onPress }) {
+    console.log(imageUrl)
     return (
-        <View style={styles.card}>
-            <Image style={styles.image} source={image} />
-            <View style={styles.detailsContainer}>
-                <Text style={styles.title}>{title}</Text>
-                <Text style={styles.subTitle}>{subTitle}</Text>
+        <TouchableWithoutFeedback onPress={onPress}>
+            <View style={styles.card}>
+                <Image style={styles.image} source={{ uri: imageUrl }} />
+                <View style={styles.detailsContainer}>
+                    <Text style={styles.title}>{title}</Text>
+                    <Text style={styles.subTitle}>{subTitle}</Text>
+                </View>
             </View>
-        </View>
+        </TouchableWithoutFeedback>
     )
 }
 const styles = StyleSheet.create({
